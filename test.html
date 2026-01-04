@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kritik Hakimiyet - Test Paneli</title>
+    <title> Test Paneli</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -114,7 +114,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>🛡️ Kritik Hakimiyet</h1>
+        <h1>test paneli_</h1>
         <p class="subtitle">F12'de Binary Gürültü</p>
         
         <div class="input-group">
@@ -122,13 +122,13 @@
             <input type="password" id="password" placeholder="Şifrenizi girin" value="admin">
         </div>
         
-        <button onclick="muhurleToken()">🔒 Mühürle</button>
+        <button onclick="muhurleToken()">Mühürle</button>
         
         <div id="result" class="result"></div>
         <div id="status"></div>
         
         <div class="info">
-            <strong>📌 Test Notu:</strong><br>
+            <strong>Test Notu:</strong><br>
             • WASM henüz yüklü değil<br>
             • GitHub'a yükledikten sonra script tag'ini ekle<br>
             • F12 Console'da binary göreceksin!
@@ -136,7 +136,10 @@
     </div>
 
     <!-- WASM yükleniyor -->
-    <script src="https://c3nkas.github.io/wasm/authority.js"></script>
+   
+     <script src="https://c3nkas.github.io/wasm/authority.js"></script>
+    <!-- Yerel test için authority.js ve authority.wasm aynı klasörde olsun ve şu satırı kullan: -->
+   <!--- <script src="authority.js"></script> -->
     
     <script>
         async function muhurleToken() {
@@ -146,35 +149,35 @@
             
             if (!password) {
                 statusDiv.className = 'status error';
-                statusDiv.textContent = '❌ Şifre boş olamaz!';
+                statusDiv.textContent = 'Şifre boş olamaz!';
                 return;
             }
             
             // WASM kontrolü
             if (typeof AuthModule === 'undefined') {
                 statusDiv.className = 'status error';
-                statusDiv.innerHTML = '❌ WASM yüklü değil!<br>GitHub\'a yükleyip script tag\'ini aktif et.';
+                statusDiv.innerHTML = 'WASM yüklü değil!<br>GitHub\'a yükleyip script tag\'ini aktif et.';
                 return;
             }
             
             try {
                 statusDiv.className = 'status';
-                statusDiv.textContent = '⏳ Mühürleniyor...';
+                statusDiv.textContent = 'Mühürleniyor...';
                 
                 const Module = await AuthModule();
                 const token = Module.muhurle(password);
                 
-                resultDiv.textContent = '🔒 Mühürlü Token:\n' + token;
+                resultDiv.textContent = 'Mühürlü Token:\n' + token;
                 resultDiv.classList.add('show');
                 
                 statusDiv.className = 'status success';
-                statusDiv.textContent = '✅ Token başarıyla mühürlendi!';
+                statusDiv.textContent = 'Token başarıyla mühürlendi!';
                 
-                console.log('🛡️ Kritik Hakimiyet - Mühürlü Token:', token);
+                console.log('Kritik Hakimiyet - Mühürlü Token:', token);
                 
             } catch (error) {
                 statusDiv.className = 'status error';
-                statusDiv.textContent = '❌ Hata: ' + error.message;
+                statusDiv.textContent = 'Hata: ' + error.message;
                 console.error('Hata:', error);
             }
         }
