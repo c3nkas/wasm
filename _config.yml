@@ -1,0 +1,8 @@
+include:
+  - authority.wasm
+
+defaults:
+  - scope:
+      path: "*.wasm"
+    values:
+      content-type: application/wasm
